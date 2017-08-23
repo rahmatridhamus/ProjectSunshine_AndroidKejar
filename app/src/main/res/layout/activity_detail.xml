@@ -1,9 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.rahmatridham.projectsunshine.DetailActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/textViewTanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:text="hari, tanggal" />
+
+        <ImageView
+            android:id="@+id/imageAwan"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/textViewTanggal"
+            android:layout_toStartOf="@+id/textViewTanggal" />
+
+        <TextView
+            android:id="@+id/textStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageAwan"
+            android:layout_alignStart="@+id/imageAwan"
+            android:layout_below="@+id/imageAwan"
+            android:layout_marginTop="20dp"
+            android:text="Status Cuaca" />
+
+        <TextView
+            android:id="@+id/derajatAtas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:text="18"
+            android:textSize="50sp"
+            android:layout_alignTop="@+id/imageAwan"
+            android:layout_toRightOf="@+id/textViewTanggal"
+            android:layout_toEndOf="@+id/textViewTanggal" />
+
+        <TextView
+            android:id="@+id/derajatBawah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/derajatAtas"
+            android:layout_alignLeft="@+id/derajatAtas"
+            android:layout_alignRight="@+id/derajatAtas"
+            android:layout_alignStart="@+id/derajatAtas"
+            android:layout_below="@+id/imageAwan"
+            android:text="13"
+            android:textAlignment="center"
+            android:textSize="36sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/humidityVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Humidity" />
+
+    <TextView
+        android:id="@+id/pressVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/humidityVal"
+        android:layout_alignRight="@+id/humidityVal"
+        android:layout_below="@+id/humidityVal"
+        android:layout_marginTop="73dp"
+        android:text="Pressure" />
+
+    <TextView
+        android:id="@+id/windVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:text="wind"
+        android:layout_below="@+id/pressVal"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
