@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -27,7 +29,9 @@ public class MainMenu extends AppCompatActivity {
     private AdapterCuaca adapter;
     private ArrayList<Cuaca> dataCuaca = new ArrayList<>();
     private ListView listView;
+    String[] daftarNama;
 
+    ArrayAdapter adapterNama;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +39,8 @@ public class MainMenu extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listCuaca);
         dataDummy();
-        adapter = new AdapterCuaca(dataCuaca, getApplicationContext());
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
+//        adapterNama.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,7 +76,22 @@ public class MainMenu extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(MainMenu.this, response, Toast.LENGTH_SHORT).show();
+                        try {
 
+                            JSONObject result = new JSONObject(response);
+                            JSONArray data = result.getJSONArray("data");
+                            daftarNama = new String[data.length()];
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject object = data.getJSONObject(i);
+                                daftarNama[i] = object.getString("nama");
+                            }
+                            adapterNama = new ArrayAdapter(MainMenu.this.getApplicationContext(), android.R.layout.simple_list_item_1,daftarNama);
+                            listView.setAdapter(adapterNama);
+                            adapterNama.notifyDataSetChanged();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 }, new Response.ErrorListener() {
