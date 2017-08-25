@@ -8,7 +8,20 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainMenu extends AppCompatActivity {
     private AdapterCuaca adapter;
@@ -51,4 +64,31 @@ public class MainMenu extends AppCompatActivity {
         dataCuaca.add(new Cuaca("Berawan", "22/Februari/2017", 25, 21, 10, 15, 12));
         dataCuaca.add(new Cuaca("Badai", "10/Oktober/2017", 27, 20, 10, 15, 12));
     }
+
+    public void getAllMahasiswa() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://api-android.herokuapp.com/mahasiswa",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(MainMenu.this, response, Toast.LENGTH_SHORT).show();
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainMenu.this, "Gagal", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<>();
+                param.put("username","rahmatridham");
+                param.put("password","1231252876");
+
+                return param;
+            }
+        };
+    }
+
 }
