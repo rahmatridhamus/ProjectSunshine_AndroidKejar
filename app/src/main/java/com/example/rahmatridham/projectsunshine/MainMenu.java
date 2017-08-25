@@ -55,6 +55,8 @@ public class MainMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        getAllMahasiswa();
     }
 
 
@@ -83,12 +85,14 @@ public class MainMenu extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
-                param.put("username","rahmatridham");
-                param.put("password","1231252876");
+                param.put("username", "rahmatridham");
+                param.put("password", "1231252876");
 
                 return param;
             }
         };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 }
